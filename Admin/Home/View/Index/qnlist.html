@@ -1,0 +1,241 @@
+
+<div class="content">
+	<div class="content-heading">
+		<div class="container">
+			<h1 class="heading">问卷列表</h1>
+		</div>
+	</div>
+	<div class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10">
+					<form action="" method="get">
+						<div class="tile-wrap" id="tile-parent-1">
+							<div class="tile"></div>
+							<div class="tile tile-collapse">
+								<div class="tile-toggle" data-parent="#tile-parent-1"
+									data-target="#tile-collapse-0" data-toggle="tile">
+									<div class="pull-left tile-side">
+										<div class="avatar avatar-green avatar-sm">
+											<span class="icon icon-launch"></span>
+										</div>
+									</div>
+									<div class="tile-inner">
+										<div class="text-overflow">{$qn_list[0]['qn_name']}</div>
+									</div>
+								</div>
+								<div class="tile-active-show collapse" id="tile-collapse-0">
+									<div class="tile-sub">
+										<p>
+								
+											创建时间：<span>{$qn_list[0]['qn_create']}</span>   发布时间：<span>{$qn_list[0]['qn_start']}</span>   结束时间：<span>{$qn_list[0]['qn_end']}</span>   最后一次修改时间：<span>{$qn_list[0]['qn_last_modify']}</span>		<br>
+											
+											问卷状态: <span> {$qn_list[0]['qn_state']} </span> <br>
+											
+											已有{$qn_list[0]['qn_count']}人回答
+										<div>
+											<!-- qs content -->
+											{$qn_content[0]}
+										</div>
+										<p>
+									</div>
+									<div class="tile-footer">
+										<ul class="nav nav-list pull-left">
+											<li><a data-dismiss="tile" href="{:U('outputQn',array(qn_id=>$qn_list[0]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;发布问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('closeQn',array(qn_id=>$qn_list[0]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;结束问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('qnmodify',array(qn_id=>$qn_list[0]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;修改问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('deleteQn',array(qn_id=>$qn_list[0]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;删除问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('quickCreate',array(qn_id=>$qn_list[0]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;快速创建相同问卷</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="tile"></div>
+							<div class="tile tile-collapse">
+								<div class="tile-toggle" data-parent="#tile-parent-1"
+									data-target="#tile-collapse-1" data-toggle="tile">
+									<div class="pull-left tile-side">
+										<div class="avatar avatar-green avatar-sm">
+											<span class="icon icon-launch"></span>
+										</div>
+									</div>
+									<div class="tile-inner">
+										<div class="text-overflow">{$qn_list[1]['qn_name']}</div>
+									</div>
+								</div>
+								<div class="tile-active-show collapse" id="tile-collapse-1">
+									<div class="tile-sub">
+										<p>
+											创建时间：<span>{$qn_list[1]['qn_create']}</span>   发布时间：<span>{$qn_list[1]['qn_start']}</span>   结束时间：<span>{$qn_list[1]['qn_end']}</span>   最后一次修改时间：<span>{$qn_list[1]['qn_last_modify']}</span> 		<br>
+										
+											问卷状态: <span> {$qn_list[1]['qn_state']} </span> <br>
+																				
+											已有{$qn_list[1]['qn_count']}人回答 <p>
+											
+											{$qn_content[1]}	
+										<div>
+											<!-- content -->
+										</div>
+										<p>
+									</div>
+									<div class="tile-footer">
+										<ul class="nav nav-list pull-left">
+											<li><a data-dismiss="tile" href="{:U('outputQn',array(qn_id=>$qn_list[1]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;发布问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('closeQn',array(qn_id=>$qn_list[1]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;结束问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('qnmodify',array(qn_id=>$qn_list[1]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;修改问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('deleteQn',array(qn_id=>$qn_list[1]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;删除问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('quickCreate',array(qn_id=>$qn_list[1]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;快速创建相同问卷</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="tile"></div>
+							<div class="tile tile-collapse">
+								<div class="tile-toggle" data-parent="#tile-parent-1"
+									data-target="#tile-collapse-2" data-toggle="tile">
+									<div class="pull-left tile-side">
+										<div class="avatar avatar-green avatar-sm">
+											<span class="icon icon-launch"></span>
+										</div>
+									</div>
+									<div class="tile-inner">
+										<div class="text-overflow">{$qn_list[2]['qn_name']}</div>
+									</div>
+								</div>
+								<div class="tile-active-show collapse" id="tile-collapse-2">
+									<div class="tile-sub">
+										<p>
+											创建时间：<span>{$qn_list[2]['qn_create']}</span>   发布时间：<span>{$qn_list[2]['qn_start']}</span>   结束时间：<span>{$qn_list[2]['qn_end']}</span>   最后一次修改时间：<span>{$qn_list[2]['qn_last_modify']}</span> 		<br>
+										
+											问卷状态: <span> {$qn_list[2]['qn_state']} </span> <br>
+											
+											已有{$qn_list[2]['qn_count']}人回答
+										<div>
+											<!-- content -->
+											{$qn_content[2]}
+										</div>
+										<p>
+									</div>
+									<div class="tile-footer">
+										<ul class="nav nav-list pull-left">
+											<li><a data-dismiss="tile" href="{:U('outputQn',array(qn_id=>$qn_list[2]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;发布问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('closeQn',array(qn_id=>$qn_list[2]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;结束问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('qnmodify',array(qn_id=>$qn_list[2]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;修改问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('deleteQn',array(qn_id=>$qn_list[2]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;删除问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('quickCreate',array(qn_id=>$qn_list[2]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;快速创建相同问卷</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="tile"></div>
+							<div class="tile tile-collapse">
+								<div class="tile-toggle" data-parent="#tile-parent-1"
+									data-target="#tile-collapse-3" data-toggle="tile">
+									<div class="pull-left tile-side">
+										<div class="avatar avatar-green avatar-sm">
+											<span class="icon icon-launch"></span>
+										</div>
+									</div>
+									<div class="tile-inner">
+										<div class="text-overflow">{$qn_list[3]['qn_name']}</div>
+									</div>
+								</div>
+								<div class="tile-active-show collapse" id="tile-collapse-3">
+									<div class="tile-sub">
+										<p>
+											创建时间：<span>{$qn_list[3]['qn_create']}</span>   发布时间：<span>{$qn_list[3]['qn_start']}</span>   结束时间：<span>{$qn_list[3]['qn_end']}</span>   最后一次修改时间：<span>{$qn_list[3]['qn_last_modify']}</span> 		<br>
+										
+											问卷状态: <span> {$qn_list[3]['qn_state']} </span> <br>
+											
+											已有{$qn_list[3]['qn_count']}人回答
+										<div>
+											<!-- content -->
+											{$qn_content[3]}
+										</div>
+										<p>
+									</div>
+									<div class="tile-footer">
+										<ul class="nav nav-list pull-left">
+											<li><a data-dismiss="tile" href="{:U('outputQn',array(qn_id=>$qn_list[3]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;发布问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('closeQn',array(qn_id=>$qn_list[3]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;结束问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('qnmodify',array(qn_id=>$qn_list[3]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;修改问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('deleteQn',array(qn_id=>$qn_list[3]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;删除问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('quickCreate',array(qn_id=>$qn_list[3]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;快速创建相同问卷</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="tile"></div>
+							<div class="tile tile-collapse">
+								<div class="tile-toggle" data-parent="#tile-parent-1"
+									data-target="#tile-collapse-4" data-toggle="tile">
+									<div class="pull-left tile-side">
+										<div class="avatar avatar-green avatar-sm">
+											<span class="icon icon-launch"></span>
+										</div>
+									</div>
+									<div class="tile-inner">
+										<div class="text-overflow">{$qn_list[4]['qn_name']}</div>
+									</div>
+								</div>
+								<div class="tile-active-show collapse" id="tile-collapse-4">
+									<div class="tile-sub">
+										<p>										
+											创建时间：<span>{$qn_list[4]['qn_create']}</span>   发布时间：<span>{$qn_list[4]['qn_start']}</span>   结束时间：<span>{$qn_list[4]['qn_end']}</span>   最后一次修改时间：<span>{$qn_list[4]['qn_last_modify']}</span> 		<br>
+										
+											问卷状态: <span> {$qn_list[4]['qn_state']} </span> <br>
+											
+											已有{$qn_list[4]['qn_count']}人回答
+										<div>
+											<!-- content -->
+											{$qn_content[4]}
+										</div>
+										<p>
+									</div>
+									<div class="tile-footer">
+										<ul class="nav nav-list pull-left">
+											<li><a data-dismiss="tile" href="{:U('outputQn',array(qn_id=>$qn_list[4]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;发布问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('closeQn',array(qn_id=>$qn_list[4]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;结束问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('qnmodify',array(qn_id=>$qn_list[4]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;修改问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('deleteQn',array(qn_id=>$qn_list[4]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;删除问卷</a></li>
+											<li><a data-dismiss="tile" href="{:U('quickCreate',array(qn_id=>$qn_list[4]['qn_id']))}"><span
+													class="icon icon-check"></span>&nbsp;快速创建相同问卷</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pages">{$page}</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

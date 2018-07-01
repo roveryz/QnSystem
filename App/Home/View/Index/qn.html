@@ -1,0 +1,155 @@
+
+<div class="content">
+	<div class="content-heading">
+		<div class="container">
+			<h1 class="heading">{$qn_name}</h1>
+		</div>
+	</div>
+	<div class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10">
+					<p />
+					<form action="" method="post" name="reqForm">
+						<input name="qn_id" type="hidden" value='$qn_id' /> {$html} <br>
+						<p>
+						<div>
+							<a class="btn btn-flat btn-green waves-button waves-effect"
+								type="submit" onclick='checkNeedans({$qn_id})'>提交问卷</a> <a
+								class="btn btn-flat btn-green waves-button waves-effect"
+								href="{:U('qnlist')}">返回列表</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	// 提交按钮事件
+	// qn = array(
+	//			qn[0] = qn_id
+	//			qn[1] = qs_array(
+	//						qn[1][0] = qs1(		
+	//									qn[1][0][1] = qs_id
+	//									qn[1][0][2] = qs_style
+	//									qn[1][0][3] = choice_id/choice_id_list(qn[1][0][3]/qn[1][0][4]/...)/ans
+	function checkNeedans(qn_id){
+		var focObj = null;
+		
+		$(".card-inner").each(function(i){
+			obj = $(this);
+			if(obj.attr('id')=='1'){
+				
+				var qs_style = obj.attr("name");				
+				var flag = 0;
+				if(qs_style == "单选"){
+					//check all choices to check if it has been ansed
+					obj.children('input').each(function(i){
+						focObj = obj;
+						var t = $(this).prop('checked');
+						if(t){
+							focObj = null;
+							flag = 1;
+							return false;
+						}
+						
+					});
+				}else if(qs_style == "多选"){
+					obj.children('input').each(function(i){
+						focObj = obj;
+						if($(this).prop('checked') == true){
+							focObj = null;
+							flag = 1;
+							return false;
+						}
+					});
+				}else{
+					focObj = obj;
+					var temp = obj.children('div').children('textarea').val();
+					if(temp != ""){
+						focObj = null;
+						flag = 1;
+						return false;
+					}
+				}
+				if(flag==0){
+					return false;
+				}
+				
+			}// end id==1
+		});//end card-inner.each
+		
+		if(focObj != null){
+			alert('还有必答题没有完成哦');
+		}else{
+			postQn(qn_id);
+		}
+	}
+	
+
+	function postQn(qn_id){
+		var qn = new Array();
+		qn[0] = qn_id;
+		qn[1] = new Array();
+		$(".card-inner").each(function(i){
+			qn[1][i] = getAnsContent($(this));
+		});
+		// 打包为json
+		var json = JSON.stringify(qn);
+		// alert(json);
+		var URL = "{:U('handleQnPost')}";
+		$.post(URL, {
+			json:json,
+		}, function(data) {
+			console.log(data);
+			alert(data);
+			window.location.href="{:U('qnlist')}";
+		});
+	}
+	
+	function getAnsContent(obj){
+		var qs = new Array();
+		var qs_style = obj.attr("name");
+		if(qs_style == "单选"){
+			// 0 qs_id
+			var temp = obj.children('input').attr('name');
+			qs[0] = temp;
+			// 1 qs_style
+			qs[1] = qs_style;
+			// 2 choice_id
+			obj.children('input').each(function(i){
+				if($(this).prop('checked') == true){
+					qs[2] = $(this).attr('value');
+				}
+			});
+		}else if(qs_style == "多选"){
+			// 0 qs_id
+			var temp = obj.children('input').attr('name');
+			qs[0] = temp;
+			// 1 qs_style
+			qs[1] = qs_style;
+			// 2 choice_id
+			// 3456... choice_id
+			temp = 0;
+			obj.children('input').each(function(i){
+				if($(this).prop('checked') == true){
+					qs[2+temp] = $(this).attr('value');
+					temp++;
+				}
+			});
+		}else{
+			// 0 qs_id
+			var temp = obj.children('div').children('textarea').attr('name');
+			qs[0] = temp;
+			// 1 qs_style
+			qs[1] = qs_style;
+			// 2 ans
+			var temp = obj.children('div').children('textarea').val();
+			qs[2] = temp;
+		}
+		return qs;
+	}
+	
+</script>

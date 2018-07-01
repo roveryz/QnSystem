@@ -1,0 +1,149 @@
+<div class="content">
+	<div class="content-heading">
+		<div class="container">
+			<h1 class="heading">快速创建新问卷</h1>
+		</div>
+	</div>
+	<div class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10">
+					<!---------------------- form ---------------------->
+					<form id="qnform" name="qnform" action="" method="post">
+						<!------------------ title ------------------>
+						<div class="form-group form-group-label form-group-alt">
+							<label class="floating-label" for="qnname">此处输入问卷标题</label> <input
+								class="form-control" id="qnname" type="text" value="{$qn_name}">
+						</div>
+						<!------------------ end title ------------------>
+						{$html}
+					</form>
+					<!---------------------- end form ---------------------->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fbtn-container">
+	<div class="fbtn-inner">
+		<a class="btn btn-green waves-button waves-effect waves-light"
+			onclick="postQn()">创建问卷</a>
+	</div>
+</div>
+<script src="__PUBLIC__/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+//新增一个单选选项
+function addRadioChoice(obj) {
+	var tableRoot = $(obj).closest("table");//获取table节点		
+	var html = $('<tr><td><input type="radio" /></td><td><div class="col-lg-16 col-md-24 col-sm-32"><div class="form-group form-group-label form-group-alt"><label class="floating-label" >此处输入选项内容</label><input class="form-control" name="choice_content" type="text"></div></div></td><td><a onclick="addRadioChoice(this)"><span class="icon icon-add"></span></a></td><td><a onclick="deleteChoice(this)"><span class="icon icon-delete"></span></a></td></tr>');
+	tableRoot.append(html);
+}
+
+// 新增一个单选题
+function addRadioQs(obj) {
+	var qsRoot = $(obj).closest(".card-main").parent();
+	var html = $('<div name="qs" class="card card-alt"><div class="card-main"><div class="card-inner"><div class="form-group form-group-label form-group-alt"><label class="floating-label"><span name="qs_num">1</span>此处输入题目内容</label> <input class="form-control" name="qs_content" type="text"></div><table><tr><td><input type="checkbox" checked="checked" name="ifneed" /></td><td>必答题</td></tr></table><input type="hidden" name="qs_style" value="单选" /><p><table border="0" width="100%"><tr><td><input type="radio" /></td><td><div class="col-lg-16 col-md-24 col-sm-32"><div class="form-group form-group-label form-group-alt"><label class="floating-label">此处输入选项内容</label><input class="form-control" name="choice_content" type="text"></div></div></td><td><a onclick="addRadioChoice(this)"><span class="icon icon-add"></span></a></td><td><a onclick="deleteChoice(this)"><span class="icon icon-delete"></span></a></td></tr><!-- 新增选项在此处后面增加一个tr --></table></div><div class="card-action"><ul class="nav nav-list pull-left"><li><a onclick="addRadioQs(this)"><span class="icon icon-add"></span>&nbsp;单选题</a></li><li><a onclick="addCheckboxQs(this)"><span class="icon icon-add"></span>&nbsp;多选题</a></li><li><a onclick="addOpenQs(this)"><span class="icon icon-add"></span>&nbsp;开放题</a></li><li><a onclick="deleteQs(this)"><span class="icon icon-delete"></span></a></li></ul></div></div></div>');
+	qsRoot.after(html);
+	refreshQsNum();
+}
+
+// 新增一个多选选项
+function addCheckboxChoice(obj) {
+	var tableRoot = $(obj).closest("table");//获取table节点		
+	var html = $('<tr><td><input type="checkbox" /></td><td><div class="col-lg-16 col-md-24 col-sm-32"><div class="form-group form-group-label form-group-alt"><label class="floating-label">此处输入选项内容</label><input class="form-control" name="choice_content" type="text"></div></div></td><td><a onclick="addCheckboxChoice(this)"><span class="icon icon-add"></span></a></td><td><a onclick="deleteChoice(this)"><span class="icon icon-delete"></span></a></td></tr>');
+	tableRoot.append(html);
+}
+
+// 新增一个多选题
+function addCheckboxQs(obj) {
+	var qsRoot = $(obj).closest(".card-main").parent();
+	var html = $('<div name="qs" class="card card-alt"><div class="card-main"><div class="card-inner"><div class="form-group form-group-label form-group-alt"><label class="floating-label"><span name="qs_num">1</span>此处输入题目内容</label> <input class="form-control" name="qs_content" type="text"></div><table><tr><td><input type="checkbox" checked="checked" name="ifneed" /></td><td>必答题</td></tr></table><input type="hidden" name="qs_style" value="多选" /><p><table border="0" width="100%"><tr><td><input type="checkbox" /></td><td><div class="col-lg-16 col-md-24 col-sm-32"><div class="form-group form-group-label form-group-alt"><label class="floating-label">此处输入选项内容</label><input class="form-control" name="choice_content" type="text"></div></div></td><td><a onclick="addCheckboxChoice(this)"><span class="icon icon-add"></span></a></td><td><a onclick="deleteChoice(this)"><span class="icon icon-delete"></span></a></td></tr><!-- 新增选项在此处后面增加一个tr --></table></div><div class="card-action"><ul class="nav nav-list pull-left"><li><a onclick="addRadioQs(this)"><span class="icon icon-add"></span>&nbsp;单选题</a></li><li><a onclick="addCheckboxQs(this)"><span class="icon icon-add"></span>&nbsp;多选题</a></li><li><a onclick="addOpenQs(this)"><span class="icon icon-add"></span>&nbsp;开放题</a></li><li><a onclick="deleteQs(this)"><span class="icon icon-delete"></span></a></li></ul></div></div></div>');
+	qsRoot.after(html);
+	refreshQsNum();
+}
+
+// 新增一个开放题
+function addOpenQs(obj) {
+	var qsRoot = $(obj).closest(".card-main").parent();
+	var html = $('<div name="qs" class="card card-alt"><div class="card-main"><div class="card-inner"><div class="form-group form-group-label form-group-alt"><label class="floating-label"><span name="qs_num">1</span>此处输入题目内容</label> <input class="form-control" name="qs_content" type="text"></div><table><tr><td><input type="checkbox" checked="checked" name="ifneed" /></td><td>必答题</td></tr></table><input type="hidden" name="qs_style" value="开放" /><div class="card-action"><ul class="nav nav-list pull-left"><li><a onclick="addRadioQs(this)"><span class="icon icon-add"></span>&nbsp;单选题</a></li><li><a onclick="addCheckboxQs(this)"><span class="icon icon-add"></span>&nbsp;多选题</a></li><li><a onclick="addOpenQs(this)"><span class="icon icon-add"></span>&nbsp;开放题</a></li><li><a onclick="deleteQs(this)"><span class="icon icon-delete"></span></a></li></ul></div></div></div>');
+	qsRoot.after(html);
+	refreshQsNum();
+}
+
+// 删除选项
+function deleteChoice(obj) {
+	var choiceRoot = $(obj).closest("tr");
+	choiceRoot.remove();
+}
+
+// 删除题目
+function deleteQs(obj) {
+	var qsRoot = $(obj).closest(".card-main").parent();
+	qsRoot.remove();
+	refreshQsNum();
+}
+
+// ***提交按钮事件
+// qn=array( 
+//		qn[0]=qn_name, 
+//		qn[1]=qs_array( 
+//				qn[1][0]=qs1(
+//							qn[1][0][0]=qs_name, 
+//							qn[1][0][1]=qs_style, 
+//							qn[1][0][2]=ifneed, 
+//							qn[1][0][3]=choice_array(
+//											qn[1][0][3][0]=choice1				
+//											qn[1][0][3][1]=choice2
+function postQn() {
+	var qn = new Array();
+	var qnName = $("#qnname")[0].value;
+	qn[0] = qnName;
+	qn[1] = new Array();//qs_array
+	$(".card-inner").each(function(i) {
+		qn[1][i] = getQsContent($(this));
+	});
+	// 打包为json
+	var json = JSON.stringify(qn);
+	// alert(json);
+	var URL = "{:U('handleQnCreate')}";
+	$.post(URL, {
+		json:json,
+	}, function(data) {
+		console.log(data);
+		alert(data);
+		window.location.href="{:U('qnlist')}";
+	});
+}
+
+// ***处理单个题目节点
+function getQsContent(obj) {
+	var qs = new Array();
+	// 0 qs_content
+	qs[0] = obj.children().children('input')[0].value;
+	// 1 ifneed
+	var input = obj.find("table:first").find("tr:first").find("td:first")
+			.find('input').prop('checked');
+	qs[1] = (input) ? '1' : '0';
+	// 2 qs_style
+	qs[2] = obj.children('[name=qs_style]').attr('value');
+	if (qs[2] != '开放') {
+		// 3 choice_array
+		var choiceArr = new Array();
+		obj.find('[name=choice_content]').each(function(i) {
+			choiceArr[i] = $(this)[0].value;
+		})
+		qs[3] = choiceArr;
+	} else {
+		qs[3] = new Array();
+	}
+	// return
+	return qs;
+}
+
+// 刷新题号
+function refreshQsNum() {
+	$('[name=qs_num]').each(function(i) {
+		$(this).text(i + 1);
+	});
+}
+</script>

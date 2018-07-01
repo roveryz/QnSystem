@@ -1,0 +1,35 @@
+
+<div class="content">
+	<div class="content-heading">
+		<div class="container">
+			<h1 class="heading">问卷列表</h1>
+		</div>
+	</div>
+	<div class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10">
+					<h2 class="content-sub-heading"></h2>
+					<form action="" method="get">
+						<!-- -------------------------------问卷列表-------------------------------------- -->
+						<volist name="qn_list" id="item">
+						<div class="tile-wrap">
+							<div class="tile">
+								<div class="pull-left tile-side">
+									<div class="avatar avatar-green avatar-sm">
+										<span class="icon icon-launch"></span>
+									</div>
+								</div>
+								<div class="tile-inner">
+									<a href="{:U('qn',array(id=>$item['qn_id']))}">{$item['qn_name']}</a>
+								</div>
+							</div>
+						</div>
+						</volist>
+						<!-- --------------------------------------------------------------------------- -->
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
